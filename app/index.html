@@ -1,0 +1,34 @@
+<html>
+<head>
+	<title>Angular JS - todo App</title>
+	<link href='css/style.css' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600italic,600,700,700italic' rel='stylesheet' type='text/css'>
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body ng-app="myTodoApp" ng-controller="TodoCtrl" ng-cloak>
+
+	
+	<div class="page-container" >
+		<div class="todo-container">
+		    <h2>Todo List</h2>
+			<ul class="todo-list" ng-repeat="todo in todos track by $index">
+				<li>
+				  <span ng-class="todo.status ? 'done': ''">{{ todo.text }}</span>
+				  <span class="bt bt-achieve" ng-click="done(todo)" ng-if="!todo.status" title="Done"><i class="material-icons">check_circle</i></span>
+				  <span class="bt bt-remove" ng-click="remove(todo)" title="Delete"><i class="material-icons">delete</i></span>
+				  <span class="bt bt-pending" ng-click="pending(todo)" ng-if="todo.status" title="Pending"><i class="material-icons">hourglass_full</i></span>
+				</li>
+			</ul>
+			<div class="no-task-error" ng-if="!todos.length">No tasks <i class="material-icons">sentiment_satisfied</i></div>
+			<ul class="add-todo">
+				<li>
+					<input type="text" class="txt" placeholder="Add Todo" ng-model="newTodo" ng-keyup="add($event)" />
+				</li>
+			</ul>
+      	</div>
+  	</div> 
+</body>
+
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript" src="controllers/todoAppController.js"></script>
+</html>
